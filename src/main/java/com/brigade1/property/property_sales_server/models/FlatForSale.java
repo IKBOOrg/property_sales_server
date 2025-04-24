@@ -131,7 +131,295 @@ public class FlatForSale {
     @Column(name = "is_active")
     private Boolean isActive = true;
 
+    public FlatForSale() {
+    }
 
+    public UUID getId() {
+        return id;
+    }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getCadastralNumber() {
+        return cadastralNumber;
+    }
+
+    public void setCadastralNumber(String cadastralNumber) {
+        this.cadastralNumber = cadastralNumber;
+    }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
+
+    public Integer getHouseFloorAmount() {
+        return houseFloorAmount;
+    }
+
+    public void setHouseFloorAmount(Integer houseFloorAmount) {
+        this.houseFloorAmount = houseFloorAmount;
+    }
+
+    public Integer getConstructionYear() {
+        return constructionYear;
+    }
+
+    public void setConstructionYear(Integer constructionYear) {
+        this.constructionYear = constructionYear;
+    }
+
+    public Integer getCeilingHeight() {
+        return ceilingHeight;
+    }
+
+    public void setCeilingHeight(Integer ceilingHeight) {
+        this.ceilingHeight = ceilingHeight;
+    }
+
+    public String getFlatNumber() {
+        return flatNumber;
+    }
+
+    public void setFlatNumber(String flatNumber) {
+        this.flatNumber = flatNumber;
+    }
+
+    public @Min(1) Integer getRoomsAmount() {
+        return roomsAmount;
+    }
+
+    public void setRoomsAmount(@Min(1) Integer roomsAmount) {
+        this.roomsAmount = roomsAmount;
+    }
+
+    public @DecimalMin("0.00") BigDecimal getTotalArea() {
+        return totalArea;
+    }
+
+    public void setTotalArea(@DecimalMin("0.00") BigDecimal totalArea) {
+        this.totalArea = totalArea;
+    }
+
+    public @DecimalMin("0.00") BigDecimal getLivingArea() {
+        return livingArea;
+    }
+
+    public void setLivingArea(@DecimalMin("0.00") BigDecimal livingArea) {
+        this.livingArea = livingArea;
+    }
+
+    public Integer getLogiaAmount() {
+        return logiaAmount;
+    }
+
+    public void setLogiaAmount(Integer logiaAmount) {
+        this.logiaAmount = logiaAmount;
+    }
+
+    public Integer getBalconyAmount() {
+        return balconyAmount;
+    }
+
+    public void setBalconyAmount(Integer balconyAmount) {
+        this.balconyAmount = balconyAmount;
+    }
+
+    public Integer getBathroomAmount() {
+        return bathroomAmount;
+    }
+
+    public void setBathroomAmount(Integer bathroomAmount) {
+        this.bathroomAmount = bathroomAmount;
+    }
+
+    public Integer getCombinedBathroomAmount() {
+        return combinedBathroomAmount;
+    }
+
+    public void setCombinedBathroomAmount(Integer combinedBathroomAmount) {
+        this.combinedBathroomAmount = combinedBathroomAmount;
+    }
+
+    public Boolean getHasStreetView() {
+        return hasStreetView;
+    }
+
+    public void setHasStreetView(Boolean hasStreetView) {
+        this.hasStreetView = hasStreetView;
+    }
+
+    public Boolean getHasYardView() {
+        return hasYardView;
+    }
+
+    public void setHasYardView(Boolean hasYardView) {
+        this.hasYardView = hasYardView;
+    }
+
+    public RenovationType getRenovationType() {
+        return renovationType;
+    }
+
+    public void setRenovationType(RenovationType renovationType) {
+        this.renovationType = renovationType;
+    }
+
+    public Integer getCargoElevatorAmount() {
+        return cargoElevatorAmount;
+    }
+
+    public void setCargoElevatorAmount(Integer cargoElevatorAmount) {
+        this.cargoElevatorAmount = cargoElevatorAmount;
+    }
+
+    public Integer getPassengerElevatorAmount() {
+        return passengerElevatorAmount;
+    }
+
+    public void setPassengerElevatorAmount(Integer passengerElevatorAmount) {
+        this.passengerElevatorAmount = passengerElevatorAmount;
+    }
+
+    public Boolean getHasWheelchairRamp() {
+        return hasWheelchairRamp;
+    }
+
+    public void setHasWheelchairRamp(Boolean hasWheelchairRamp) {
+        this.hasWheelchairRamp = hasWheelchairRamp;
+    }
+
+    public Boolean getHasGarbageChute() {
+        return hasGarbageChute;
+    }
+
+    public void setHasGarbageChute(Boolean hasGarbageChute) {
+        this.hasGarbageChute = hasGarbageChute;
+    }
+
+    public ParkingType getParkingType() {
+        return parkingType;
+    }
+
+    public void setParkingType(ParkingType parkingType) {
+        this.parkingType = parkingType;
+    }
+
+    public Boolean getHasFurnitureInRooms() {
+        return hasFurnitureInRooms;
+    }
+
+    public void setHasFurnitureInRooms(Boolean hasFurnitureInRooms) {
+        this.hasFurnitureInRooms = hasFurnitureInRooms;
+    }
+
+    public Boolean getHasFurnitureInKitchen() {
+        return hasFurnitureInKitchen;
+    }
+
+    public void setHasFurnitureInKitchen(Boolean hasFurnitureInKitchen) {
+        this.hasFurnitureInKitchen = hasFurnitureInKitchen;
+    }
+
+    public Boolean getHasBath() {
+        return hasBath;
+    }
+
+    public void setHasBath(Boolean hasBath) {
+        this.hasBath = hasBath;
+    }
+
+    public Boolean getHasShowerCabin() {
+        return hasShowerCabin;
+    }
+
+    public void setHasShowerCabin(Boolean hasShowerCabin) {
+        this.hasShowerCabin = hasShowerCabin;
+    }
+
+    public Boolean getHasAirConditioner() {
+        return hasAirConditioner;
+    }
+
+    public void setHasAirConditioner(Boolean hasAirConditioner) {
+        this.hasAirConditioner = hasAirConditioner;
+    }
+
+    public Boolean getHasRefrigerator() {
+        return hasRefrigerator;
+    }
+
+    public void setHasRefrigerator(Boolean hasRefrigerator) {
+        this.hasRefrigerator = hasRefrigerator;
+    }
+
+    public Boolean getHasTv() {
+        return hasTv;
+    }
+
+    public void setHasTv(Boolean hasTv) {
+        this.hasTv = hasTv;
+    }
+
+    public Boolean getHasDishwasher() {
+        return hasDishwasher;
+    }
+
+    public void setHasDishwasher(Boolean hasDishwasher) {
+        this.hasDishwasher = hasDishwasher;
+    }
+
+    public Boolean getHasWashingMachine() {
+        return hasWashingMachine;
+    }
+
+    public void setHasWashingMachine(Boolean hasWashingMachine) {
+        this.hasWashingMachine = hasWashingMachine;
+    }
+
+    public FlatHouseType getFlatHouseType() {
+        return flatHouseType;
+    }
+
+    public void setFlatHouseType(FlatHouseType flatHouseType) {
+        this.flatHouseType = flatHouseType;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }
 
