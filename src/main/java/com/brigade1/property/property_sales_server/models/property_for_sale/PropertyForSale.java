@@ -1,5 +1,6 @@
-package com.brigade1.property.property_sales_server.models;
+package com.brigade1.property.property_sales_server.models.property_for_sale;
 
+import com.brigade1.property.property_sales_server.models.Listing;
 import jakarta.persistence.*;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 public abstract class PropertyForSale {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "listing_id")
     private UUID id;
 
     @OneToOne
@@ -34,5 +35,13 @@ public abstract class PropertyForSale {
     public void setListing(Listing listing) {
         this.listing = listing;
         this.setId(listing.getId());
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyForSale{" +
+                "id=" + id +
+                ", listing=" + listing +
+                '}';
     }
 }

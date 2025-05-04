@@ -1,6 +1,10 @@
-package com.brigade1.property.property_sales_server.models;
+package com.brigade1.property.property_sales_server.security;
 
+import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.Role;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -8,12 +12,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name="user")
+@Table(name="\"user\"")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id", nullable = false, updatable = false)
+    @Column(name = "id")
     private UUID id;
 
     @Column(name="email", nullable = false, unique = true)
@@ -27,7 +31,7 @@ public class User {
     @Column(name="role", nullable = false)
     Role role;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Listing> listings;
 
     public User() {
@@ -77,5 +81,16 @@ public class User {
 
     public void setListings(List<Listing> listings) {
         this.listings = listings;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", listings=" + listings +
+                '}';
     }
 }

@@ -48,8 +48,8 @@ public class ListingService {
     /**
      * Find listings by owner
      */
-    public List<Listing> findByOwner(User owner) {
-        return listingRepository.findByOwner(owner);
+    public List<Listing> findByOwner(User user) {
+        return listingRepository.findByUser(user);
     }
 
     /**

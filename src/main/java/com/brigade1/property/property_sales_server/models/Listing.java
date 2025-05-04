@@ -1,10 +1,14 @@
 package com.brigade1.property.property_sales_server.models;
 
-import com.brigade1.property.property_sales_server.models.enums.ListingPropertyType;
+import com.brigade1.property.property_sales_server.models.property_for_sale.PropertyForSale;
+import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
+import com.brigade1.property.property_sales_server.security.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,37 +16,30 @@ import java.util.UUID;
 public class Listing {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name="id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "property_type", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "property_type", nullable = false)
     private ListingPropertyType propertyType;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+//    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+//    private PropertyForSale sale;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-
-    @Column(name = "is_active")
-    private boolean isActive;
-
-
-    @OneToOne(mappedBy = "listing")
-    private Address measurements;
-
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "listing")
-    private List<Photo> photo;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Address address;
 
+    public Listing() {}
 
-    public Listing() {
+    public Listing(ListingPropertyType propertyType) {
+        this.propertyType = propertyType;
     }
 
     public UUID getId() {
@@ -61,37 +58,16 @@ public class Listing {
         this.propertyType = propertyType;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public Address getMeasurements() {
-        return measurements;
-    }
-
-    public void setMeasurements(Address measurements) {
-        this.measurements = measurements;
-    }
+//    public PropertyForSale getSale() {
+//        return sale;
+//    }
+//
+//    public void setSale(PropertyForSale sale) {
+//        this.sale = sale;
+//        if (sale != null) {
+//            sale.setListing(this);
+//        }
+//    }
 
     public User getUser() {
         return user;
@@ -101,11 +77,22 @@ public class Listing {
         this.user = user;
     }
 
-    public List<Photo> getPhoto() {
-        return photo;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setPhoto(List<Photo> photo) {
-        this.photo = photo;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Listing{" +
+                "id=" + id +
+                ", propertyType=" + propertyType +
+                //", sale=" + sale +
+                ", owner=" + user +
+                ", address=" + address +
+                '}';
     }
 }

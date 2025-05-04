@@ -1,4 +1,27 @@
-package com.brigade1.property.property_sales_server;
+package com.brigade1.property.property_sales_server.repositories;
 
-public interface ListingRepository {
+import com.brigade1.property.property_sales_server.models.Listing;
+import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
+import com.brigade1.property.property_sales_server.security.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public interface ListingRepository extends JpaRepository<Listing, UUID> {
+
+    // Find all listings by property type
+    List<Listing> findByPropertyType(ListingPropertyType propertyType);
+
+    // Find all listings by owner
+    List<Listing> findByUser(User user);
+
+    // Find by address (if you need to search by address)
+    Optional<Listing> findByAddressId(UUID addressId);
+
+    // Custom query example (if you need to find listings with specific property types)
+    List<Listing> findByPropertyTypeIn(List<ListingPropertyType> propertyTypes);
 }
