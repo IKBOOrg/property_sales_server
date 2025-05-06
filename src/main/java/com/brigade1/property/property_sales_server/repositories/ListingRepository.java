@@ -13,15 +13,11 @@ import java.util.UUID;
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, UUID> {
 
-    // Find all listings by property type
     List<Listing> findByPropertyType(ListingPropertyType propertyType);
 
-    // Find all listings by owner
     List<Listing> findByUser(User user);
 
-    // Find by address (if you need to search by address)
     Optional<Listing> findByAddressId(UUID addressId);
 
-    // Custom query example (if you need to find listings with specific property types)
     List<Listing> findByPropertyTypeIn(List<ListingPropertyType> propertyTypes);
 }

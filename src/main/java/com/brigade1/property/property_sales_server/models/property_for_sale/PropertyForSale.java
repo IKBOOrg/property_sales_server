@@ -14,7 +14,6 @@ public abstract class PropertyForSale {
     private UUID id;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "listing_id")
     private Listing listing;
 

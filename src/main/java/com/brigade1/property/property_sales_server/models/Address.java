@@ -1,6 +1,5 @@
 package com.brigade1.property.property_sales_server.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import java.util.UUID;

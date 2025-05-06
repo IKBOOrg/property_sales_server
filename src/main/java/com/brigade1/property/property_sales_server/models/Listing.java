@@ -3,10 +3,6 @@ package com.brigade1.property.property_sales_server.models;
 import com.brigade1.property.property_sales_server.models.property_for_sale.PropertyForSale;
 import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
 import com.brigade1.property.property_sales_server.security.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -24,16 +20,15 @@ public class Listing {
     @Column(name = "property_type", nullable = false)
     private ListingPropertyType propertyType;
 
-//    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-//    private PropertyForSale sale;
+//    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private PropertyForSale propertyForSale;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @JsonIgnore
     private Address address;
 
     public Listing() {}
@@ -58,17 +53,6 @@ public class Listing {
         this.propertyType = propertyType;
     }
 
-//    public PropertyForSale getSale() {
-//        return sale;
-//    }
-//
-//    public void setSale(PropertyForSale sale) {
-//        this.sale = sale;
-//        if (sale != null) {
-//            sale.setListing(this);
-//        }
-//    }
-
     public User getUser() {
         return user;
     }
@@ -85,13 +69,22 @@ public class Listing {
         this.address = address;
     }
 
+//    public PropertyForSale getPropertyForSale() {
+//        return propertyForSale;
+//    }
+//
+//    public void setPropertyForSale(PropertyForSale propertyForSale) {
+//        this.propertyForSale = propertyForSale;
+//        propertyForSale.setId(this.id);
+//    }
+
     @Override
     public String toString() {
         return "Listing{" +
                 "id=" + id +
                 ", propertyType=" + propertyType +
-                //", sale=" + sale +
-                ", owner=" + user +
+                //", propertyForSale=" + propertyForSale +
+                ", user=" + user +
                 ", address=" + address +
                 '}';
     }

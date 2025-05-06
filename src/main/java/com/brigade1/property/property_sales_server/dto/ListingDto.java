@@ -13,6 +13,7 @@ public class ListingDto {
     private ListingPropertyType propertyType;
     private UserDto user;
     private AddressDto address;
+    private PropertyForSaleDto propertyForSale;
 
     public ListingDto() {}
 
@@ -56,5 +57,24 @@ public class ListingDto {
 
     public AddressDto getAddress() {
         return address;
+    }
+
+    public PropertyForSaleDto getPropertyForSale() {
+        return propertyForSale;
+    }
+
+    public void setPropertyForSale(PropertyForSaleDto propertyForSale) {
+        this.propertyForSale = propertyForSale;
+    }
+
+    @Override
+    public String toString() {
+        return "ListingDto{" +
+                "id=" + id +
+                ", propertyType=" + propertyType +
+                ", user=" + user +
+                ", address=" + address +
+                ", propertyForSale=" + propertyForSale +
+                '}';
     }
 }

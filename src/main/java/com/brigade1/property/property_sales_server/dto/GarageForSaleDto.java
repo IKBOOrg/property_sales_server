@@ -1,73 +1,38 @@
-package com.brigade1.property.property_sales_server.models.property_for_sale;
+package com.brigade1.property.property_sales_server.dto;
 
 import com.brigade1.property.property_sales_server.models.types.GarageType;
-import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "garage_for_sale")
-@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "listing_id")
-public class GarageForSale extends PropertyForSale {
-
-    @Column(name = "cadastral_number", nullable = false)
+public class GarageForSaleDto {
+    private UUID id;
     private String cadastralNumber;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "garage_type", nullable = false)
     private GarageType garageType;
-
-    @Column(name = "area", nullable = false, precision = 10, scale = 2)
     private BigDecimal area;
-
-    @Column(name = "ceiling_height")
     private Integer ceilingHeight;
-
-    @Column(name = "construction_year")
     private Integer constructionYear;
-
-    @Column(name = "has_electricity", nullable = false)
     private Boolean hasElectricity;
-
-    @Column(name = "has_heating", nullable = false)
     private Boolean hasHeating;
-
-    @Column(name = "has_water_supply", nullable = false)
     private Boolean hasWaterSupply;
-
-    @Column(name = "has_sewerage", nullable = false)
     private Boolean hasSewerage;
-
-    @Column(name = "has_automatic_door", nullable = false)
     private Boolean hasAutomaticDoor;
-
-    @Column(name = "has_ramp", nullable = false)
     private Boolean hasRamp;
-
-    @Column(name = "parking_spots")
     private Integer parkingSpots;
-
-    @Column(name = "is_reinforced", nullable = false)
     private Boolean isReinforced;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
-
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
-
-    @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    // Constructors
-    public GarageForSale() {}
+    // Empty constructor
+    public GarageForSaleDto() {}
 
-    // Getters and Setters
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getCadastralNumber() {
         return cadastralNumber;
     }
@@ -164,50 +129,27 @@ public class GarageForSale extends PropertyForSale {
         this.parkingSpots = parkingSpots;
     }
 
-    public Boolean getIsReinforced() {
+    public Boolean getReinforced() {
         return isReinforced;
     }
 
-    public void setIsReinforced(Boolean isReinforced) {
-        this.isReinforced = isReinforced;
+    public void setReinforced(Boolean reinforced) {
+        isReinforced = reinforced;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public LocalDateTime getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(LocalDateTime deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
-    public Boolean getIsActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     @Override
     public String toString() {
-        return "GarageForSale{" +
-                "cadastralNumber='" + cadastralNumber + '\'' +
+        return "GarageForSaleDto{" +
+                "id=" + id +
+                ", cadastralNumber='" + cadastralNumber + '\'' +
                 ", garageType=" + garageType +
                 ", area=" + area +
                 ", ceilingHeight=" + ceilingHeight +
@@ -220,9 +162,6 @@ public class GarageForSale extends PropertyForSale {
                 ", hasRamp=" + hasRamp +
                 ", parkingSpots=" + parkingSpots +
                 ", isReinforced=" + isReinforced +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", deletedAt=" + deletedAt +
                 ", isActive=" + isActive +
                 '}';
     }
