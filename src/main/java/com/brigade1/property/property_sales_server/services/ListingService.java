@@ -41,16 +41,16 @@ public class ListingService {
     /**
      * Find listings by property type
      */
-    public List<Listing> findByPropertyType(ListingPropertyType propertyType) {
-        return listingRepository.findByPropertyType(propertyType);
-    }
-
-    /**
-     * Find listings by owner
-     */
-    public List<Listing> findByOwner(User user) {
-        return listingRepository.findByUser(user);
-    }
+//    public List<Listing> findByPropertyType(ListingPropertyType propertyType) {
+//        return listingRepository.findByPropertyType(propertyType);
+//    }
+//
+//    /**
+//     * Find listings by owner
+//     */
+//    public List<Listing> findByOwner(User user) {
+//        return listingRepository.findByUser(user);
+//    }
 
     /**
      * Save a new or update an existing listing

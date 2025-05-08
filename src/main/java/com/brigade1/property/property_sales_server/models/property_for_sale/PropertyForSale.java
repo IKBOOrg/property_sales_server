@@ -14,7 +14,8 @@ public abstract class PropertyForSale {
     private UUID id;
 
     @OneToOne
-    @JoinColumn(name = "listing_id")
+    @MapsId
+    @JoinColumn(name = "listing_id", referencedColumnName = "id")
     private Listing listing;
 
     public PropertyForSale() {}
@@ -33,7 +34,6 @@ public abstract class PropertyForSale {
 
     public void setListing(Listing listing) {
         this.listing = listing;
-        this.setId(listing.getId());
     }
 
     @Override
