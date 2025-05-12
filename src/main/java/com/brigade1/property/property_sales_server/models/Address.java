@@ -54,17 +54,13 @@ public class Address {
 
     protected Address() {}
 
-    public Address(Listing listing,
-                   String country,
-                   String region,
-                   String settlement,
-                   String building) {
-        this.listing = listing;
+    public Address(String country, String region, String settlement, String building) {
         this.country = country;
         this.region = region;
         this.settlement = settlement;
         this.building = building;
     }
+
 
     public UUID getId() {
         return id;
@@ -149,6 +145,8 @@ public class Address {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+
 
     @Override
     public String toString() {
