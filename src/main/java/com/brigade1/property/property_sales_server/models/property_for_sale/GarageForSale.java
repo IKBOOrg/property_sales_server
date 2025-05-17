@@ -1,7 +1,9 @@
 package com.brigade1.property.property_sales_server.models.property_for_sale;
 
+import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.GarageType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -9,8 +11,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "garage_for_sale")
-@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "listing_id")
-public class GarageForSale extends PropertyForSale {
+public class GarageForSale{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "cadastral_number", nullable = false)
     private String cadastralNumber;
@@ -63,6 +68,11 @@ public class GarageForSale extends PropertyForSale {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
+
+    @NotNull(message = "Garage should not be null")
+    @OneToOne
+    @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
+    private Listing garage;
 
     // Constructors
     public GarageForSale() {}
@@ -202,6 +212,38 @@ public class GarageForSale extends PropertyForSale {
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Boolean getReinforced() {
+        return isReinforced;
+    }
+
+    public void setReinforced(Boolean reinforced) {
+        isReinforced = reinforced;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Listing getGarage() {
+        return garage;
+    }
+
+    public void setGarage(Listing garage) {
+        this.garage = garage;
     }
 
     @Override

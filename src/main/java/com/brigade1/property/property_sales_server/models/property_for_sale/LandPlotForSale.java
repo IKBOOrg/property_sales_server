@@ -1,16 +1,22 @@
 package com.brigade1.property.property_sales_server.models.property_for_sale;
 
 
+import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "land_plot_for_sale")
-@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "listing_id")
-public class LandPlotForSale extends PropertyForSale {
+public class LandPlotForSale {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "cadastral_number", nullable = false, unique = true)
     private String cadastralNumber;
@@ -55,6 +61,11 @@ public class LandPlotForSale extends PropertyForSale {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
+
+    @NotNull(message = "Land should not be null")
+    @OneToOne
+    @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
+    private Listing land;
 
     // Constructors
     public LandPlotForSale() {}
@@ -164,10 +175,35 @@ public class LandPlotForSale extends PropertyForSale {
         this.isActive = isActive;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Listing getLand() {
+        return land;
+    }
+
+    public void setLand(Listing land) {
+        this.land = land;
+    }
+
     @Override
     public String toString() {
         return "LandPlotForSale{" +
-                "cadastralNumber='" + cadastralNumber + '\'' +
+                "id=" + id +
+                ", cadastralNumber='" + cadastralNumber + '\'' +
                 ", landCategory=" + landCategory +
                 ", landPlotState=" + landPlotState +
                 ", sizeArea=" + sizeArea +
@@ -180,6 +216,7 @@ public class LandPlotForSale extends PropertyForSale {
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
                 ", isActive=" + isActive +
+                ", land=" + land +
                 '}';
     }
 }

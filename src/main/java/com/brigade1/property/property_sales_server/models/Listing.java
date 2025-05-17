@@ -1,11 +1,15 @@
 package com.brigade1.property.property_sales_server.models;
 
-import com.brigade1.property.property_sales_server.models.property_for_sale.PropertyForSale;
+import com.brigade1.property.property_sales_server.models.property_for_sale.FlatForSale;
+import com.brigade1.property.property_sales_server.models.property_for_sale.GarageForSale;
+import com.brigade1.property.property_sales_server.models.property_for_sale.LandPlotForSale;
+import com.brigade1.property.property_sales_server.models.property_for_sale.PrivateHouseForSale;
 import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
 import com.brigade1.property.property_sales_server.security.User;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,9 +24,6 @@ public class Listing {
     @Enumerated(EnumType.STRING)
     @Column(name = "property_type", nullable = false)
     private ListingPropertyType propertyType;
-
-    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PropertyForSale propertyForSale;
 
     @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
@@ -41,6 +42,17 @@ public class Listing {
     @Column(name = "is_active", nullable = true)
     private Boolean isActive;
 
+    @OneToOne(mappedBy = "flat")
+    private FlatForSale flat;
+
+    @OneToOne(mappedBy = "garage")
+    private GarageForSale garage;
+
+    @OneToOne(mappedBy = "land")
+    private LandPlotForSale land;
+
+    @OneToOne(mappedBy = "privateHose")
+    private PrivateHouseForSale privateHose;
 
     public Listing() {}
 
@@ -80,25 +92,6 @@ public class Listing {
         this.address = address;
     }
 
-    public PropertyForSale getPropertyForSale() {
-        return propertyForSale;
-    }
-
-    // !!!ВОЗМОЖНО ЕБОЛА!!!
-    public void setPropertyForSale(PropertyForSale propertyForSale) {
-        // break the previous link (if any)
-        if (this.propertyForSale != null) {
-            this.propertyForSale.setListing(null);
-        }
-
-        // set the new link
-        this.propertyForSale = propertyForSale;
-
-        // establish the back‑reference
-        if (propertyForSale != null) {
-            propertyForSale.setListing(this);
-        }
-    }
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -124,14 +117,52 @@ public class Listing {
         isActive = active;
     }
 
+    public FlatForSale getFlat() {
+        return flat;
+    }
+
+    public void setFlat(FlatForSale flat) {
+        this.flat = flat;
+    }
+
+    public GarageForSale getGarage() {
+        return garage;
+    }
+
+    public void setGarage(GarageForSale garage) {
+        this.garage = garage;
+    }
+
+    public LandPlotForSale getLand() {
+        return land;
+    }
+
+    public void setLand(LandPlotForSale land) {
+        this.land = land;
+    }
+
+    public PrivateHouseForSale getPrivateHose() {
+        return privateHose;
+    }
+
+    public void setPrivateHose(PrivateHouseForSale privateHose) {
+        this.privateHose = privateHose;
+    }
+
     @Override
     public String toString() {
         return "Listing{" +
                 "id=" + id +
                 ", propertyType=" + propertyType +
-                ", propertyForSale=" + propertyForSale +
                 ", user=" + user +
                 ", address=" + address +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", isActive=" + isActive +
+                ", flat=" + flat +
+                ", garage=" + garage +
+                ", land=" + land +
+                ", privateHose=" + privateHose +
                 '}';
     }
 }

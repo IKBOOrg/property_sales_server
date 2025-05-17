@@ -1,16 +1,23 @@
 package com.brigade1.property.property_sales_server.models.property_for_sale;
 
+import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.PrivateHouseType;
 import com.brigade1.property.property_sales_server.models.types.RenovationType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "private_house_for_sale")
-@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "listing_id")
-public class PrivateHouseForSale extends PropertyForSale {
+public class PrivateHouseForSale{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "cadastral_number")
     private String cadastralNumber;
@@ -94,6 +101,11 @@ public class PrivateHouseForSale extends PropertyForSale {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
+
+    @NotNull(message = "Private hose should not be null")
+    @OneToOne
+    @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
+    private Listing privateHose;
 
     // Constructors
     public PrivateHouseForSale() {}
@@ -315,10 +327,36 @@ public class PrivateHouseForSale extends PropertyForSale {
         this.isActive = isActive;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Listing getPrivateHose() {
+        return privateHose;
+    }
+
+    public void setPrivateHose(Listing privateHose) {
+        this.privateHose = privateHose;
+    }
+
+
     @Override
     public String toString() {
         return "PrivateHouseForSale{" +
-                "cadastralNumber='" + cadastralNumber + '\'' +
+                "id=" + id +
+                ", cadastralNumber='" + cadastralNumber + '\'' +
                 ", privateHouseType=" + privateHouseType +
                 ", roomsAmount=" + roomsAmount +
                 ", constructionYear=" + constructionYear +
@@ -345,6 +383,7 @@ public class PrivateHouseForSale extends PropertyForSale {
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
                 ", isActive=" + isActive +
+                ", privateHose=" + privateHose +
                 '}';
     }
 }
