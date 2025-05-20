@@ -3,8 +3,12 @@ package com.brigade1.property.property_sales_server.dto;
 import com.brigade1.property.property_sales_server.models.types.*;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * DTO for {@link com.brigade1.property.property_sales_server.models.property_for_sale.LandPlotForSale}
+ */
 public class LandPlotForSaleDto {
     private UUID id;
     private String cadastralNumber;
@@ -16,10 +20,9 @@ public class LandPlotForSaleDto {
     private GasType gas;
     private Boolean electricity;
     private String description;
-    private Boolean isActive;
 
-    // Empty constructor
-    public LandPlotForSaleDto() {}
+    public LandPlotForSaleDto() {
+    }
 
     public UUID getId() {
         return id;
@@ -99,30 +102,5 @@ public class LandPlotForSaleDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "LandPlotForSaleDto{" +
-                "id=" + id +
-                ", cadastralNumber='" + cadastralNumber + '\'' +
-                ", landCategory=" + landCategory +
-                ", landPlotState=" + landPlotState +
-                ", sizeArea=" + sizeArea +
-                ", sewage=" + sewage +
-                ", water=" + water +
-                ", gas=" + gas +
-                ", electricity=" + electricity +
-                ", description='" + description + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

@@ -63,7 +63,7 @@ public class LandPlotForSale {
     private Boolean isActive;
 
     @NotNull(message = "Land should not be null")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
     private Listing land;
 

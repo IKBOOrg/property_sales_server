@@ -5,8 +5,12 @@ import com.brigade1.property.property_sales_server.models.types.ParkingType;
 import com.brigade1.property.property_sales_server.models.types.RenovationType;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * DTO for {@link com.brigade1.property.property_sales_server.models.property_for_sale.FlatForSale}
+ */
 public class FlatForSaleDto {
     private UUID id;
     private String cadastralNumber;
@@ -40,12 +44,44 @@ public class FlatForSaleDto {
     private Boolean hasDishwasher;
     private Boolean hasWashingMachine;
     private FlatHouseType flatHouseType;
-    private Boolean isActive;
 
-    // Empty constructor
-    public FlatForSaleDto() {}
+    public FlatForSaleDto() {
+    }
 
-    // get/set
+    public FlatForSaleDto(UUID id, String cadastralNumber, Integer floor, Integer houseFloorAmount, Integer constructionYear, Integer ceilingHeight, String flatNumber, Integer roomsAmount, BigDecimal totalArea, BigDecimal livingArea, Integer logiaAmount, Integer balconyAmount, Integer bathroomAmount, Integer combinedBathroomAmount, Boolean hasStreetView, Boolean hasYardView, RenovationType renovationType, Integer cargoElevatorAmount, Integer passengerElevatorAmount, Boolean hasWheelchairRamp, Boolean hasGarbageChute, ParkingType parkingType, Boolean hasFurnitureInRooms, Boolean hasFurnitureInKitchen, Boolean hasBath, Boolean hasShowerCabin, Boolean hasAirConditioner, Boolean hasRefrigerator, Boolean hasTv, Boolean hasDishwasher, Boolean hasWashingMachine, FlatHouseType flatHouseType) {
+        this.id = id;
+        this.cadastralNumber = cadastralNumber;
+        this.floor = floor;
+        this.houseFloorAmount = houseFloorAmount;
+        this.constructionYear = constructionYear;
+        this.ceilingHeight = ceilingHeight;
+        this.flatNumber = flatNumber;
+        this.roomsAmount = roomsAmount;
+        this.totalArea = totalArea;
+        this.livingArea = livingArea;
+        this.logiaAmount = logiaAmount;
+        this.balconyAmount = balconyAmount;
+        this.bathroomAmount = bathroomAmount;
+        this.combinedBathroomAmount = combinedBathroomAmount;
+        this.hasStreetView = hasStreetView;
+        this.hasYardView = hasYardView;
+        this.renovationType = renovationType;
+        this.cargoElevatorAmount = cargoElevatorAmount;
+        this.passengerElevatorAmount = passengerElevatorAmount;
+        this.hasWheelchairRamp = hasWheelchairRamp;
+        this.hasGarbageChute = hasGarbageChute;
+        this.parkingType = parkingType;
+        this.hasFurnitureInRooms = hasFurnitureInRooms;
+        this.hasFurnitureInKitchen = hasFurnitureInKitchen;
+        this.hasBath = hasBath;
+        this.hasShowerCabin = hasShowerCabin;
+        this.hasAirConditioner = hasAirConditioner;
+        this.hasRefrigerator = hasRefrigerator;
+        this.hasTv = hasTv;
+        this.hasDishwasher = hasDishwasher;
+        this.hasWashingMachine = hasWashingMachine;
+        this.flatHouseType = flatHouseType;
+    }
 
     public UUID getId() {
         return id;
@@ -301,52 +337,5 @@ public class FlatForSaleDto {
 
     public void setFlatHouseType(FlatHouseType flatHouseType) {
         this.flatHouseType = flatHouseType;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "FlatForSaleDto{" +
-                "id=" + id +
-                ", cadastralNumber='" + cadastralNumber + '\'' +
-                ", floor=" + floor +
-                ", houseFloorAmount=" + houseFloorAmount +
-                ", constructionYear=" + constructionYear +
-                ", ceilingHeight=" + ceilingHeight +
-                ", flatNumber='" + flatNumber + '\'' +
-                ", roomsAmount=" + roomsAmount +
-                ", totalArea=" + totalArea +
-                ", livingArea=" + livingArea +
-                ", logiaAmount=" + logiaAmount +
-                ", balconyAmount=" + balconyAmount +
-                ", bathroomAmount=" + bathroomAmount +
-                ", combinedBathroomAmount=" + combinedBathroomAmount +
-                ", hasStreetView=" + hasStreetView +
-                ", hasYardView=" + hasYardView +
-                ", renovationType=" + renovationType +
-                ", cargoElevatorAmount=" + cargoElevatorAmount +
-                ", passengerElevatorAmount=" + passengerElevatorAmount +
-                ", hasWheelchairRamp=" + hasWheelchairRamp +
-                ", hasGarbageChute=" + hasGarbageChute +
-                ", parkingType=" + parkingType +
-                ", hasFurnitureInRooms=" + hasFurnitureInRooms +
-                ", hasFurnitureInKitchen=" + hasFurnitureInKitchen +
-                ", hasBath=" + hasBath +
-                ", hasShowerCabin=" + hasShowerCabin +
-                ", hasAirConditioner=" + hasAirConditioner +
-                ", hasRefrigerator=" + hasRefrigerator +
-                ", hasTv=" + hasTv +
-                ", hasDishwasher=" + hasDishwasher +
-                ", hasWashingMachine=" + hasWashingMachine +
-                ", flatHouseType=" + flatHouseType +
-                ", isActive=" + isActive +
-                '}';
     }
 }

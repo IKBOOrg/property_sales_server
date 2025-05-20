@@ -1,124 +1,114 @@
 package com.brigade1.property.property_sales_server.dto;
 
+import jakarta.validation.constraints.Size;
+
+import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Data Transfer Object for Address.
- * Exposes address fields but omits the back-reference to Listing.
+ * DTO for {@link com.brigade1.property.property_sales_server.models.Address}
  */
 public class AddressDto {
     private UUID id;
+    @Size(message = "country should be less than 128 characters", max = 128)
     private String country;
+    @Size(message = "region should be less than 128 characters", max = 128)
     private String region;
+    @Size(message = "settlement should be less than 128 characters", max = 128)
     private String settlement;
+    @Size(message = "public transport description should be less than 512 characters", max = 512)
     private String publicTransport;
+    @Size(message = "street should be less than 128 characters", max = 128)
     private String street;
+    @Size(message = "building should be less than 128 characters", max = 128)
     private String building;
+    @Size(message = "block should be less than 128 characters", max = 128)
     private String block;
+    @Size(message = "apartment should be less than 128 characters", max = 128)
     private String apartment;
+    @Size(message = "zip code should be less than 32 characters", max = 32)
     private String zipCode;
 
-    public AddressDto() {}
-
-    public AddressDto(UUID id,
-                      String country,
-                      String region,
-                      String settlement,
-                      String publicTransport,
-                      String street,
-                      String building,
-                      String block,
-                      String apartment,
-                      String zipCode) {
-        this.id = id;
-        this.country = country;
-        this.region = region;
-        this.settlement = settlement;
-        this.publicTransport = publicTransport;
-        this.street = street;
-        this.building = building;
-        this.block = block;
-        this.apartment = apartment;
-        this.zipCode = zipCode;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public void setSettlement(String settlement) {
-        this.settlement = settlement;
-    }
-
-    public void setPublicTransport(String publicTransport) {
-        this.publicTransport = publicTransport;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public void setBlock(String block) {
-        this.block = block;
-    }
-
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public AddressDto() {
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getCountry() {
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public @Size(message = "country should be less than 128 characters", max = 128) String getCountry() {
         return country;
     }
 
-    public String getRegion() {
+    public void setCountry(@Size(message = "country should be less than 128 characters", max = 128) String country) {
+        this.country = country;
+    }
+
+    public @Size(message = "region should be less than 128 characters", max = 128) String getRegion() {
         return region;
     }
 
-    public String getSettlement() {
+    public void setRegion(@Size(message = "region should be less than 128 characters", max = 128) String region) {
+        this.region = region;
+    }
+
+    public @Size(message = "settlement should be less than 128 characters", max = 128) String getSettlement() {
         return settlement;
     }
 
-    public String getPublicTransport() {
+    public void setSettlement(@Size(message = "settlement should be less than 128 characters", max = 128) String settlement) {
+        this.settlement = settlement;
+    }
+
+    public @Size(message = "public transport description should be less than 512 characters", max = 512) String getPublicTransport() {
         return publicTransport;
     }
 
-    public String getStreet() {
+    public void setPublicTransport(@Size(message = "public transport description should be less than 512 characters", max = 512) String publicTransport) {
+        this.publicTransport = publicTransport;
+    }
+
+    public @Size(message = "street should be less than 128 characters", max = 128) String getStreet() {
         return street;
     }
 
-    public String getBuilding() {
+    public void setStreet(@Size(message = "street should be less than 128 characters", max = 128) String street) {
+        this.street = street;
+    }
+
+    public @Size(message = "building should be less than 128 characters", max = 128) String getBuilding() {
         return building;
     }
 
-    public String getBlock() {
+    public void setBuilding(@Size(message = "building should be less than 128 characters", max = 128) String building) {
+        this.building = building;
+    }
+
+    public @Size(message = "block should be less than 128 characters", max = 128) String getBlock() {
         return block;
     }
 
-    public String getApartment() {
+    public void setBlock(@Size(message = "block should be less than 128 characters", max = 128) String block) {
+        this.block = block;
+    }
+
+    public @Size(message = "apartment should be less than 128 characters", max = 128) String getApartment() {
         return apartment;
     }
 
-    public String getZipCode() {
+    public void setApartment(@Size(message = "apartment should be less than 128 characters", max = 128) String apartment) {
+        this.apartment = apartment;
+    }
+
+    public @Size(message = "zip code should be less than 32 characters", max = 32) String getZipCode() {
         return zipCode;
+    }
+
+    public void setZipCode(@Size(message = "zip code should be less than 32 characters", max = 32) String zipCode) {
+        this.zipCode = zipCode;
     }
 }

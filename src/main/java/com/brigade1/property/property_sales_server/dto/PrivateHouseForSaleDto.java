@@ -33,7 +33,6 @@ public class PrivateHouseForSaleDto {
     private Boolean hasYardView;
     private Boolean isActive;
 
-    // Empty constructor
     public PrivateHouseForSaleDto() {}
 
     public UUID getId() {
@@ -234,36 +233,5 @@ public class PrivateHouseForSaleDto {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "PrivateHouseForSaleDto{" +
-                "id=" + id +
-                ", cadastralNumber='" + cadastralNumber + '\'' +
-                ", privateHouseType=" + privateHouseType +
-                ", roomsAmount=" + roomsAmount +
-                ", constructionYear=" + constructionYear +
-                ", livingArea=" + livingArea +
-                ", totalArea=" + totalArea +
-                ", ceilingHeight=" + ceilingHeight +
-                ", atticArea=" + atticArea +
-                ", basementArea=" + basementArea +
-                ", renovationType=" + renovationType +
-                ", hasBathroom=" + hasBathroom +
-                ", hasToilet=" + hasToilet +
-                ", hasGarage=" + hasGarage +
-                ", garageArea=" + garageArea +
-                ", hasGarden=" + hasGarden +
-                ", gardenArea=" + gardenArea +
-                ", hasBalcony=" + hasBalcony +
-                ", hasBoiler=" + hasBoiler +
-                ", hasFireplace=" + hasFireplace +
-                ", hasFurnitureInRooms=" + hasFurnitureInRooms +
-                ", hasFurnitureInKitchen=" + hasFurnitureInKitchen +
-                ", hasStreetView=" + hasStreetView +
-                ", hasYardView=" + hasYardView +
-                ", isActive=" + isActive +
-                '}';
     }
 }

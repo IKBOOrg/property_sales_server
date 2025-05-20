@@ -1,55 +1,53 @@
 package com.brigade1.property.property_sales_server.dto;
 
-import java.util.UUID;
 import com.brigade1.property.property_sales_server.models.types.Role;
+import jakarta.validation.constraints.Size;
+
+import java.util.Objects;
+import java.util.UUID;
 
 /**
- * Data Transfer Object for User.
- * Exposes user’s id, email, and role.
+ * DTO for {@link com.brigade1.property.property_sales_server.security.User}
  */
 public class UserDto {
     private UUID id;
+    @Size(message = "email cannot be longer than 256 characters", max = 256)
     private String email;
+    private String password;
     private Role role;
 
-    public UserDto() {}
-
-    public UserDto(UUID id, String email, Role role) {
-        this.id = id;
-        this.email = email;
-        this.role = role;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    public UserDto() {
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getEmail() {
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public @Size(message = "email cannot be longer than 256 characters", max = 256) String getEmail() {
         return email;
+    }
+
+    public void setEmail(@Size(message = "email cannot be longer than 256 characters", max = 256) String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Role getRole() {
         return role;
     }
 
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", role=" + role +
-                '}';
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

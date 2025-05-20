@@ -55,6 +55,7 @@ public class ListingService {
     /**
      * Save a new or update an existing listing
      */
+
     @Transactional
     public Listing save(Listing listing) {
         return listingRepository.save(listing);

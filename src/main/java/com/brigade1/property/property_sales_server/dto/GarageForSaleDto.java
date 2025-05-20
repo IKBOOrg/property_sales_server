@@ -3,8 +3,12 @@ package com.brigade1.property.property_sales_server.dto;
 import com.brigade1.property.property_sales_server.models.types.GarageType;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * DTO for {@link com.brigade1.property.property_sales_server.models.property_for_sale.GarageForSale}
+ */
 public class GarageForSaleDto {
     private UUID id;
     private String cadastralNumber;
@@ -20,10 +24,9 @@ public class GarageForSaleDto {
     private Boolean hasRamp;
     private Integer parkingSpots;
     private Boolean isReinforced;
-    private Boolean isActive;
 
-    // Empty constructor
-    public GarageForSaleDto() {}
+    public GarageForSaleDto() {
+    }
 
     public UUID getId() {
         return id;
@@ -135,34 +138,5 @@ public class GarageForSaleDto {
 
     public void setReinforced(Boolean reinforced) {
         isReinforced = reinforced;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "GarageForSaleDto{" +
-                "id=" + id +
-                ", cadastralNumber='" + cadastralNumber + '\'' +
-                ", garageType=" + garageType +
-                ", area=" + area +
-                ", ceilingHeight=" + ceilingHeight +
-                ", constructionYear=" + constructionYear +
-                ", hasElectricity=" + hasElectricity +
-                ", hasHeating=" + hasHeating +
-                ", hasWaterSupply=" + hasWaterSupply +
-                ", hasSewerage=" + hasSewerage +
-                ", hasAutomaticDoor=" + hasAutomaticDoor +
-                ", hasRamp=" + hasRamp +
-                ", parkingSpots=" + parkingSpots +
-                ", isReinforced=" + isReinforced +
-                ", isActive=" + isActive +
-                '}';
     }
 }

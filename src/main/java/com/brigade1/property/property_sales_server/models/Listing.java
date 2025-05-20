@@ -9,7 +9,6 @@ import com.brigade1.property.property_sales_server.security.User;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,7 +24,7 @@ public class Listing {
     @Column(name = "property_type", nullable = false)
     private ListingPropertyType propertyType;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
@@ -33,22 +32,22 @@ public class Listing {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @Column(name = "created_at", nullable = true, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Timestamp createdAt;
 
-    @Column(name = "updated_at", nullable = true)
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "is_active", nullable = true)
+    @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToOne(mappedBy = "flat")
+    @OneToOne(mappedBy = "flat", cascade = CascadeType.ALL)
     private FlatForSale flat;
 
-    @OneToOne(mappedBy = "garage")
+    @OneToOne(mappedBy = "garage", cascade = CascadeType.ALL)
     private GarageForSale garage;
 
-    @OneToOne(mappedBy = "land")
+    @OneToOne(mappedBy = "land", cascade = CascadeType.ALL)
     private LandPlotForSale land;
 
     @OneToOne(mappedBy = "privateHose")
