@@ -1,10 +1,11 @@
 package com.brigade1.property.property_sales_server.services;
 
-import com.brigade1.property.property_sales_server.repositories.ListingRepository;
+import com.brigade1.property.property_sales_server.repositories.*;
 
 import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
-import com.brigade1.property.property_sales_server.security.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +19,21 @@ import java.util.UUID;
 public class ListingService {
 
     private final ListingRepository listingRepository;
+    private final PrivateHouseForSaleRepository privateHouseRepository;
+    private final FlatForSaleRepository flatRepository;
+    private final GarageForSaleRepository garageRepository;
+    private final LandPlotForSaleRepository landPlotRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
-    public ListingService(ListingRepository listingRepository) {
+    public ListingService(ListingRepository listingRepository, PrivateHouseForSaleRepository privateHouseRepository, FlatForSaleRepository flatRepository, GarageForSaleRepository garageRepository, LandPlotForSaleRepository landPlotRepository) {
         this.listingRepository = listingRepository;
+        this.privateHouseRepository = privateHouseRepository;
+        this.flatRepository = flatRepository;
+        this.garageRepository = garageRepository;
+        this.landPlotRepository = landPlotRepository;
     }
 
     /**
@@ -58,6 +70,29 @@ public class ListingService {
 
     @Transactional
     public Listing save(Listing listing) {
+        switch (listing.getPropertyType()) {
+            case PRIVATE_HOUSE -> {
+                if (listing.getPrivateHose() != null) {
+                    listing.getPrivateHose().setListing(listing);
+                }
+            }
+            case FLAT -> {
+                if (listing.getFlat() != null) {
+                    listing.getFlat().setListing(listing);
+                }
+            }
+            case GARAGE -> {
+                if (listing.getGarage() != null) {
+                    listing.getGarage().setListing(listing);
+                }
+            }
+            case LAND_PLOT -> {
+                if (listing.getLand() != null) {
+                    listing.getLand().setListing(listing);
+                }
+            }
+            default -> throw new IllegalArgumentException("Unsupported property type");
+        }
         return listingRepository.save(listing);
     }
 
@@ -68,4 +103,16 @@ public class ListingService {
     public void deleteById(UUID id) {
         listingRepository.deleteById(id);
     }
+
+
+    public Optional<Listing> findByCadastralNumber(String cadastralNumber, ListingPropertyType type) {
+        return switch (type) {
+            case GARAGE -> listingRepository.findByGarage_CadastralNumber(cadastralNumber);
+            case LAND_PLOT -> listingRepository.findByLand_CadastralNumber(cadastralNumber);
+            case FLAT -> listingRepository.findByFlat_CadastralNumber(cadastralNumber);
+            case PRIVATE_HOUSE -> listingRepository.findByPrivateHose_CadastralNumber(cadastralNumber);
+        };
+    }
+
+
 }

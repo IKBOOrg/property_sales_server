@@ -131,7 +131,7 @@ public class FlatForSale{
     @NotNull(message = "Flat should not be null")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
-    private Listing flat;
+    private Listing listing;
 
     // Constructors
     public FlatForSale() {}
@@ -433,12 +433,12 @@ public class FlatForSale{
         this.id = id;
     }
 
-    public Listing getFlat() {
-        return flat;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setFlat(Listing flat) {
-        this.flat = flat;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 
     @Override

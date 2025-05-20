@@ -41,16 +41,16 @@ public class Listing {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToOne(mappedBy = "flat", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
     private FlatForSale flat;
 
-    @OneToOne(mappedBy = "garage", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
     private GarageForSale garage;
 
-    @OneToOne(mappedBy = "land", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
     private LandPlotForSale land;
 
-    @OneToOne(mappedBy = "privateHose")
+    @OneToOne(mappedBy = "listing")
     private PrivateHouseForSale privateHose;
 
     public Listing() {}

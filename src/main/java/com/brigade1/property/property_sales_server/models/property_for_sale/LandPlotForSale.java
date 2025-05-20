@@ -65,7 +65,7 @@ public class LandPlotForSale {
     @NotNull(message = "Land should not be null")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
-    private Listing land;
+    private Listing listing;
 
     // Constructors
     public LandPlotForSale() {}
@@ -191,12 +191,12 @@ public class LandPlotForSale {
         isActive = active;
     }
 
-    public Listing getLand() {
-        return land;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setLand(Listing land) {
-        this.land = land;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 
     @Override
@@ -216,7 +216,7 @@ public class LandPlotForSale {
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
                 ", isActive=" + isActive +
-                ", land=" + land +
+                ", land=" + listing +
                 '}';
     }
 }

@@ -105,7 +105,7 @@ public class PrivateHouseForSale{
     @NotNull(message = "Private hose should not be null")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
-    private Listing privateHose;
+    private Listing listing;
 
     // Constructors
     public PrivateHouseForSale() {}
@@ -343,12 +343,12 @@ public class PrivateHouseForSale{
         isActive = active;
     }
 
-    public Listing getPrivateHose() {
-        return privateHose;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setPrivateHose(Listing privateHose) {
-        this.privateHose = privateHose;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 
 
@@ -383,7 +383,7 @@ public class PrivateHouseForSale{
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
                 ", isActive=" + isActive +
-                ", privateHose=" + privateHose +
+                ", privateHose=" + listing +
                 '}';
     }
 }

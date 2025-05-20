@@ -6,9 +6,15 @@ import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.security.User;
 import com.brigade1.property.property_sales_server.services.ListingService;
 import com.brigade1.property.property_sales_server.services.UserService;
+import com.brigade1.property.property_sales_server.util.errorresponse.ListingErrorResponse;
+import com.brigade1.property.property_sales_server.util.notcreatedexception.ListingNotCreatedException;
+import com.brigade1.property.property_sales_server.util.validator.ListingValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +28,14 @@ public class ListingController {
     private final ListingService listingService;
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final ListingValidator listingValidator;
 
     @Autowired
-    public ListingController(ListingService listingService, UserService userService, ModelMapper modelMapper) {
+    public ListingController(ListingService listingService, UserService userService, ModelMapper modelMapper, ListingValidator paintingValidator) {
         this.listingService = listingService;
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.listingValidator = paintingValidator;
     }
 
     @GetMapping
@@ -45,18 +53,35 @@ public class ListingController {
                 .orElseThrow(() -> new RuntimeException("Listing with id " + id + " not found"));
     }
 
-    @PostMapping()
-    public ResponseEntity<String> create(@RequestBody ListingDto listingDto) {
-        Optional<User> user = userService.findById(listingDto.getUser().getId());
+    @PostMapping("/add")
+    public ResponseEntity<?> create(@RequestBody ListingDto listingDto, BindingResult bindingResult) {
+        listingValidator.validate(listingDto, bindingResult);
 
-        if (user.isPresent()) {
-            Listing listing = toListing(listingDto);
-            listing.setUser(user.get());
-            listingService.save(listing);
-            return ResponseEntity.ok().body("Listing created successfully");
-        } else {
-            return ResponseEntity.badRequest().body("User not found");
+        Optional<User> user = userService.findById(listingDto.getUser().getId());
+        if (user.isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new ListingErrorResponse("User not found", System.currentTimeMillis()));
         }
+
+        if (bindingResult.hasErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                stringBuilder.append(error.getField())
+                        .append(" - ")
+                        .append(error.getDefaultMessage())
+                        .append("; ");
+            }
+
+            throw new ListingNotCreatedException(stringBuilder.toString());
+        }
+
+        Listing listing = toListing(listingDto);
+        listing.setUser(user.get());
+        listingService.save(listing);
+
+        return ResponseEntity.ok("Listing created successfully");
     }
 
     private ListingDto toListingDto(Listing listing) {
@@ -73,5 +98,14 @@ public class ListingController {
 
     private User toUser(UserDto userDto) {
         return modelMapper.map(userDto, User.class);
+    }
+
+
+    @ExceptionHandler
+    private ResponseEntity<ListingErrorResponse> handleException(ListingNotCreatedException e) {
+        ListingErrorResponse response = new ListingErrorResponse(
+                e.getMessage(), System.currentTimeMillis()
+        );
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

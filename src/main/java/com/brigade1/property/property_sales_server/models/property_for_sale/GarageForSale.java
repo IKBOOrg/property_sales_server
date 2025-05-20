@@ -72,7 +72,7 @@ public class GarageForSale{
     @NotNull(message = "Garage should not be null")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
-    private Listing garage;
+    private Listing listing;
 
     // Constructors
     public GarageForSale() {}
@@ -238,12 +238,12 @@ public class GarageForSale{
         isActive = active;
     }
 
-    public Listing getGarage() {
-        return garage;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setGarage(Listing garage) {
-        this.garage = garage;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 
     @Override
