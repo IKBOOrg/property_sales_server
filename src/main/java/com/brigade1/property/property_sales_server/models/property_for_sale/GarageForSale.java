@@ -13,7 +13,6 @@ import java.util.UUID;
 @Table(name = "garage_for_sale")
 public class GarageForSale{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
@@ -69,9 +68,9 @@ public class GarageForSale{
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @NotNull(message = "Garage should not be null")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
+    @OneToOne
+    @MapsId  // Указывает, что id берется из связанной сущности
+    @JoinColumn(name = "id") // Используем тот же id как внешний ключ
     private Listing listing;
 
     // Constructors

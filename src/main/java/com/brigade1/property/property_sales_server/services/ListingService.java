@@ -19,21 +19,13 @@ import java.util.UUID;
 public class ListingService {
 
     private final ListingRepository listingRepository;
-    private final PrivateHouseForSaleRepository privateHouseRepository;
-    private final FlatForSaleRepository flatRepository;
-    private final GarageForSaleRepository garageRepository;
-    private final LandPlotForSaleRepository landPlotRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    public ListingService(ListingRepository listingRepository, PrivateHouseForSaleRepository privateHouseRepository, FlatForSaleRepository flatRepository, GarageForSaleRepository garageRepository, LandPlotForSaleRepository landPlotRepository) {
+    public ListingService(ListingRepository listingRepository) {
         this.listingRepository = listingRepository;
-        this.privateHouseRepository = privateHouseRepository;
-        this.flatRepository = flatRepository;
-        this.garageRepository = garageRepository;
-        this.landPlotRepository = landPlotRepository;
     }
 
     /**
@@ -69,31 +61,9 @@ public class ListingService {
      */
 
     @Transactional
-    public Listing save(Listing listing) {
-        switch (listing.getPropertyType()) {
-            case PRIVATE_HOUSE -> {
-                if (listing.getPrivateHose() != null) {
-                    listing.getPrivateHose().setListing(listing);
-                }
-            }
-            case FLAT -> {
-                if (listing.getFlat() != null) {
-                    listing.getFlat().setListing(listing);
-                }
-            }
-            case GARAGE -> {
-                if (listing.getGarage() != null) {
-                    listing.getGarage().setListing(listing);
-                }
-            }
-            case LAND_PLOT -> {
-                if (listing.getLand() != null) {
-                    listing.getLand().setListing(listing);
-                }
-            }
-            default -> throw new IllegalArgumentException("Unsupported property type");
-        }
-        return listingRepository.save(listing);
+    public void save(Listing listing) {
+
+        listingRepository.save(listing);
     }
 
     /**

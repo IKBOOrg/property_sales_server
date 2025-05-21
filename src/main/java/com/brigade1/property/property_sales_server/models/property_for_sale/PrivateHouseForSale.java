@@ -15,7 +15,6 @@ import java.util.UUID;
 public class PrivateHouseForSale{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
@@ -102,9 +101,9 @@ public class PrivateHouseForSale{
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @NotNull(message = "Private hose should not be null")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "listing_id", referencedColumnName = "id", nullable = false)
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
     private Listing listing;
 
     // Constructors
