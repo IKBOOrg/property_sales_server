@@ -28,6 +28,23 @@ public class GarageForSaleDto {
     public GarageForSaleDto() {
     }
 
+    public GarageForSaleDto(UUID id, String cadastralNumber, GarageType garageType, BigDecimal area, Integer ceilingHeight, Integer constructionYear, Boolean hasElectricity, Boolean hasHeating, Boolean hasWaterSupply, Boolean hasSewerage, Boolean hasAutomaticDoor, Boolean hasRamp, Integer parkingSpots, Boolean isReinforced) {
+        this.id = id;
+        this.cadastralNumber = cadastralNumber;
+        this.garageType = garageType;
+        this.area = area;
+        this.ceilingHeight = ceilingHeight;
+        this.constructionYear = constructionYear;
+        this.hasElectricity = hasElectricity;
+        this.hasHeating = hasHeating;
+        this.hasWaterSupply = hasWaterSupply;
+        this.hasSewerage = hasSewerage;
+        this.hasAutomaticDoor = hasAutomaticDoor;
+        this.hasRamp = hasRamp;
+        this.parkingSpots = parkingSpots;
+        this.isReinforced = isReinforced;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -132,11 +149,56 @@ public class GarageForSaleDto {
         this.parkingSpots = parkingSpots;
     }
 
-    public Boolean getReinforced() {
+    public Boolean getIsReinforced() {
         return isReinforced;
     }
 
-    public void setReinforced(Boolean reinforced) {
-        isReinforced = reinforced;
+    public void setIsReinforced(Boolean isReinforced) {
+        this.isReinforced = isReinforced;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GarageForSaleDto entity = (GarageForSaleDto) o;
+        return Objects.equals(this.id, entity.id) &&
+                Objects.equals(this.cadastralNumber, entity.cadastralNumber) &&
+                Objects.equals(this.garageType, entity.garageType) &&
+                Objects.equals(this.area, entity.area) &&
+                Objects.equals(this.ceilingHeight, entity.ceilingHeight) &&
+                Objects.equals(this.constructionYear, entity.constructionYear) &&
+                Objects.equals(this.hasElectricity, entity.hasElectricity) &&
+                Objects.equals(this.hasHeating, entity.hasHeating) &&
+                Objects.equals(this.hasWaterSupply, entity.hasWaterSupply) &&
+                Objects.equals(this.hasSewerage, entity.hasSewerage) &&
+                Objects.equals(this.hasAutomaticDoor, entity.hasAutomaticDoor) &&
+                Objects.equals(this.hasRamp, entity.hasRamp) &&
+                Objects.equals(this.parkingSpots, entity.parkingSpots) &&
+                Objects.equals(this.isReinforced, entity.isReinforced);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cadastralNumber, garageType, area, ceilingHeight, constructionYear, hasElectricity, hasHeating, hasWaterSupply, hasSewerage, hasAutomaticDoor, hasRamp, parkingSpots, isReinforced);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "cadastralNumber = " + cadastralNumber + ", " +
+                "garageType = " + garageType + ", " +
+                "area = " + area + ", " +
+                "ceilingHeight = " + ceilingHeight + ", " +
+                "constructionYear = " + constructionYear + ", " +
+                "hasElectricity = " + hasElectricity + ", " +
+                "hasHeating = " + hasHeating + ", " +
+                "hasWaterSupply = " + hasWaterSupply + ", " +
+                "hasSewerage = " + hasSewerage + ", " +
+                "hasAutomaticDoor = " + hasAutomaticDoor + ", " +
+                "hasRamp = " + hasRamp + ", " +
+                "parkingSpots = " + parkingSpots + ", " +
+                "isReinforced = " + isReinforced + ")";
     }
 }

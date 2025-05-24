@@ -49,7 +49,9 @@ public class Address {
     @Column(name = "zip_code", length = 32)
     private String zipCode;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
     private Listing listing;
 
     protected Address() {}

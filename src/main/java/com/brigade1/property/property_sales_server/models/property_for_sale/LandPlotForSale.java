@@ -4,7 +4,6 @@ package com.brigade1.property.property_sales_server.models.property_for_sale;
 import com.brigade1.property.property_sales_server.models.Listing;
 import com.brigade1.property.property_sales_server.models.types.*;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

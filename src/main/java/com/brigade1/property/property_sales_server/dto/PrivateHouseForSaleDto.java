@@ -4,8 +4,12 @@ import com.brigade1.property.property_sales_server.models.types.PrivateHouseType
 import com.brigade1.property.property_sales_server.models.types.RenovationType;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * DTO for {@link com.brigade1.property.property_sales_server.models.property_for_sale.PrivateHouseForSale}
+ */
 public class PrivateHouseForSaleDto {
     private UUID id;
     private String cadastralNumber;
@@ -31,9 +35,36 @@ public class PrivateHouseForSaleDto {
     private Boolean hasFurnitureInKitchen;
     private Boolean hasStreetView;
     private Boolean hasYardView;
-    private Boolean isActive;
 
-    public PrivateHouseForSaleDto() {}
+    public PrivateHouseForSaleDto() {
+    }
+
+    public PrivateHouseForSaleDto(UUID id, String cadastralNumber, PrivateHouseType privateHouseType, Integer roomsAmount, Integer constructionYear, BigDecimal livingArea, BigDecimal totalArea, Integer ceilingHeight, BigDecimal atticArea, BigDecimal basementArea, RenovationType renovationType, Boolean hasBathroom, Boolean hasToilet, Boolean hasGarage, BigDecimal garageArea, Boolean hasGarden, BigDecimal gardenArea, Boolean hasBalcony, Boolean hasBoiler, Boolean hasFireplace, Boolean hasFurnitureInRooms, Boolean hasFurnitureInKitchen, Boolean hasStreetView, Boolean hasYardView) {
+        this.id = id;
+        this.cadastralNumber = cadastralNumber;
+        this.privateHouseType = privateHouseType;
+        this.roomsAmount = roomsAmount;
+        this.constructionYear = constructionYear;
+        this.livingArea = livingArea;
+        this.totalArea = totalArea;
+        this.ceilingHeight = ceilingHeight;
+        this.atticArea = atticArea;
+        this.basementArea = basementArea;
+        this.renovationType = renovationType;
+        this.hasBathroom = hasBathroom;
+        this.hasToilet = hasToilet;
+        this.hasGarage = hasGarage;
+        this.garageArea = garageArea;
+        this.hasGarden = hasGarden;
+        this.gardenArea = gardenArea;
+        this.hasBalcony = hasBalcony;
+        this.hasBoiler = hasBoiler;
+        this.hasFireplace = hasFireplace;
+        this.hasFurnitureInRooms = hasFurnitureInRooms;
+        this.hasFurnitureInKitchen = hasFurnitureInKitchen;
+        this.hasStreetView = hasStreetView;
+        this.hasYardView = hasYardView;
+    }
 
     public UUID getId() {
         return id;
@@ -227,11 +258,68 @@ public class PrivateHouseForSaleDto {
         this.hasYardView = hasYardView;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PrivateHouseForSaleDto entity = (PrivateHouseForSaleDto) o;
+        return Objects.equals(this.id, entity.id) &&
+                Objects.equals(this.cadastralNumber, entity.cadastralNumber) &&
+                Objects.equals(this.privateHouseType, entity.privateHouseType) &&
+                Objects.equals(this.roomsAmount, entity.roomsAmount) &&
+                Objects.equals(this.constructionYear, entity.constructionYear) &&
+                Objects.equals(this.livingArea, entity.livingArea) &&
+                Objects.equals(this.totalArea, entity.totalArea) &&
+                Objects.equals(this.ceilingHeight, entity.ceilingHeight) &&
+                Objects.equals(this.atticArea, entity.atticArea) &&
+                Objects.equals(this.basementArea, entity.basementArea) &&
+                Objects.equals(this.renovationType, entity.renovationType) &&
+                Objects.equals(this.hasBathroom, entity.hasBathroom) &&
+                Objects.equals(this.hasToilet, entity.hasToilet) &&
+                Objects.equals(this.hasGarage, entity.hasGarage) &&
+                Objects.equals(this.garageArea, entity.garageArea) &&
+                Objects.equals(this.hasGarden, entity.hasGarden) &&
+                Objects.equals(this.gardenArea, entity.gardenArea) &&
+                Objects.equals(this.hasBalcony, entity.hasBalcony) &&
+                Objects.equals(this.hasBoiler, entity.hasBoiler) &&
+                Objects.equals(this.hasFireplace, entity.hasFireplace) &&
+                Objects.equals(this.hasFurnitureInRooms, entity.hasFurnitureInRooms) &&
+                Objects.equals(this.hasFurnitureInKitchen, entity.hasFurnitureInKitchen) &&
+                Objects.equals(this.hasStreetView, entity.hasStreetView) &&
+                Objects.equals(this.hasYardView, entity.hasYardView);
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cadastralNumber, privateHouseType, roomsAmount, constructionYear, livingArea, totalArea, ceilingHeight, atticArea, basementArea, renovationType, hasBathroom, hasToilet, hasGarage, garageArea, hasGarden, gardenArea, hasBalcony, hasBoiler, hasFireplace, hasFurnitureInRooms, hasFurnitureInKitchen, hasStreetView, hasYardView);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "cadastralNumber = " + cadastralNumber + ", " +
+                "privateHouseType = " + privateHouseType + ", " +
+                "roomsAmount = " + roomsAmount + ", " +
+                "constructionYear = " + constructionYear + ", " +
+                "livingArea = " + livingArea + ", " +
+                "totalArea = " + totalArea + ", " +
+                "ceilingHeight = " + ceilingHeight + ", " +
+                "atticArea = " + atticArea + ", " +
+                "basementArea = " + basementArea + ", " +
+                "renovationType = " + renovationType + ", " +
+                "hasBathroom = " + hasBathroom + ", " +
+                "hasToilet = " + hasToilet + ", " +
+                "hasGarage = " + hasGarage + ", " +
+                "garageArea = " + garageArea + ", " +
+                "hasGarden = " + hasGarden + ", " +
+                "gardenArea = " + gardenArea + ", " +
+                "hasBalcony = " + hasBalcony + ", " +
+                "hasBoiler = " + hasBoiler + ", " +
+                "hasFireplace = " + hasFireplace + ", " +
+                "hasFurnitureInRooms = " + hasFurnitureInRooms + ", " +
+                "hasFurnitureInKitchen = " + hasFurnitureInKitchen + ", " +
+                "hasStreetView = " + hasStreetView + ", " +
+                "hasYardView = " + hasYardView + ")";
     }
 }

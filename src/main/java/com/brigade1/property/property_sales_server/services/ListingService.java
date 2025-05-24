@@ -20,9 +20,6 @@ public class ListingService {
 
     private final ListingRepository listingRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Autowired
     public ListingService(ListingRepository listingRepository) {
         this.listingRepository = listingRepository;
@@ -42,27 +39,8 @@ public class ListingService {
         return listingRepository.findById(id);
     }
 
-    /**
-     * Find listings by property type
-     */
-//    public List<Listing> findByPropertyType(ListingPropertyType propertyType) {
-//        return listingRepository.findByPropertyType(propertyType);
-//    }
-//
-//    /**
-//     * Find listings by owner
-//     */
-//    public List<Listing> findByOwner(User user) {
-//        return listingRepository.findByUser(user);
-//    }
-
-    /**
-     * Save a new or update an existing listing
-     */
-
     @Transactional
     public void save(Listing listing) {
-
         listingRepository.save(listing);
     }
 

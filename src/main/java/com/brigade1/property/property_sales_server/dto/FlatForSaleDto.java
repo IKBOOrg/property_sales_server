@@ -338,4 +338,85 @@ public class FlatForSaleDto {
     public void setFlatHouseType(FlatHouseType flatHouseType) {
         this.flatHouseType = flatHouseType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FlatForSaleDto entity = (FlatForSaleDto) o;
+        return Objects.equals(this.id, entity.id) &&
+                Objects.equals(this.cadastralNumber, entity.cadastralNumber) &&
+                Objects.equals(this.floor, entity.floor) &&
+                Objects.equals(this.houseFloorAmount, entity.houseFloorAmount) &&
+                Objects.equals(this.constructionYear, entity.constructionYear) &&
+                Objects.equals(this.ceilingHeight, entity.ceilingHeight) &&
+                Objects.equals(this.flatNumber, entity.flatNumber) &&
+                Objects.equals(this.roomsAmount, entity.roomsAmount) &&
+                Objects.equals(this.totalArea, entity.totalArea) &&
+                Objects.equals(this.livingArea, entity.livingArea) &&
+                Objects.equals(this.logiaAmount, entity.logiaAmount) &&
+                Objects.equals(this.balconyAmount, entity.balconyAmount) &&
+                Objects.equals(this.bathroomAmount, entity.bathroomAmount) &&
+                Objects.equals(this.combinedBathroomAmount, entity.combinedBathroomAmount) &&
+                Objects.equals(this.hasStreetView, entity.hasStreetView) &&
+                Objects.equals(this.hasYardView, entity.hasYardView) &&
+                Objects.equals(this.renovationType, entity.renovationType) &&
+                Objects.equals(this.cargoElevatorAmount, entity.cargoElevatorAmount) &&
+                Objects.equals(this.passengerElevatorAmount, entity.passengerElevatorAmount) &&
+                Objects.equals(this.hasWheelchairRamp, entity.hasWheelchairRamp) &&
+                Objects.equals(this.hasGarbageChute, entity.hasGarbageChute) &&
+                Objects.equals(this.parkingType, entity.parkingType) &&
+                Objects.equals(this.hasFurnitureInRooms, entity.hasFurnitureInRooms) &&
+                Objects.equals(this.hasFurnitureInKitchen, entity.hasFurnitureInKitchen) &&
+                Objects.equals(this.hasBath, entity.hasBath) &&
+                Objects.equals(this.hasShowerCabin, entity.hasShowerCabin) &&
+                Objects.equals(this.hasAirConditioner, entity.hasAirConditioner) &&
+                Objects.equals(this.hasRefrigerator, entity.hasRefrigerator) &&
+                Objects.equals(this.hasTv, entity.hasTv) &&
+                Objects.equals(this.hasDishwasher, entity.hasDishwasher) &&
+                Objects.equals(this.hasWashingMachine, entity.hasWashingMachine) &&
+                Objects.equals(this.flatHouseType, entity.flatHouseType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cadastralNumber, floor, houseFloorAmount, constructionYear, ceilingHeight, flatNumber, roomsAmount, totalArea, livingArea, logiaAmount, balconyAmount, bathroomAmount, combinedBathroomAmount, hasStreetView, hasYardView, renovationType, cargoElevatorAmount, passengerElevatorAmount, hasWheelchairRamp, hasGarbageChute, parkingType, hasFurnitureInRooms, hasFurnitureInKitchen, hasBath, hasShowerCabin, hasAirConditioner, hasRefrigerator, hasTv, hasDishwasher, hasWashingMachine, flatHouseType);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "cadastralNumber = " + cadastralNumber + ", " +
+                "floor = " + floor + ", " +
+                "houseFloorAmount = " + houseFloorAmount + ", " +
+                "constructionYear = " + constructionYear + ", " +
+                "ceilingHeight = " + ceilingHeight + ", " +
+                "flatNumber = " + flatNumber + ", " +
+                "roomsAmount = " + roomsAmount + ", " +
+                "totalArea = " + totalArea + ", " +
+                "livingArea = " + livingArea + ", " +
+                "logiaAmount = " + logiaAmount + ", " +
+                "balconyAmount = " + balconyAmount + ", " +
+                "bathroomAmount = " + bathroomAmount + ", " +
+                "combinedBathroomAmount = " + combinedBathroomAmount + ", " +
+                "hasStreetView = " + hasStreetView + ", " +
+                "hasYardView = " + hasYardView + ", " +
+                "renovationType = " + renovationType + ", " +
+                "cargoElevatorAmount = " + cargoElevatorAmount + ", " +
+                "passengerElevatorAmount = " + passengerElevatorAmount + ", " +
+                "hasWheelchairRamp = " + hasWheelchairRamp + ", " +
+                "hasGarbageChute = " + hasGarbageChute + ", " +
+                "parkingType = " + parkingType + ", " +
+                "hasFurnitureInRooms = " + hasFurnitureInRooms + ", " +
+                "hasFurnitureInKitchen = " + hasFurnitureInKitchen + ", " +
+                "hasBath = " + hasBath + ", " +
+                "hasShowerCabin = " + hasShowerCabin + ", " +
+                "hasAirConditioner = " + hasAirConditioner + ", " +
+                "hasRefrigerator = " + hasRefrigerator + ", " +
+                "hasTv = " + hasTv + ", " +
+                "hasDishwasher = " + hasDishwasher + ", " +
+                "hasWashingMachine = " + hasWashingMachine + ", " +
+                "flatHouseType = " + flatHouseType + ")";
+    }
 }

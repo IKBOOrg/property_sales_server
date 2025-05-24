@@ -69,8 +69,8 @@ public class GarageForSale{
     private Boolean isActive;
 
     @OneToOne
-    @MapsId  // Указывает, что id берется из связанной сущности
-    @JoinColumn(name = "id") // Используем тот же id как внешний ключ
+    @MapsId
+    @JoinColumn(name = "id")
     private Listing listing;
 
     // Constructors

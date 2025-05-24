@@ -24,6 +24,19 @@ public class LandPlotForSaleDto {
     public LandPlotForSaleDto() {
     }
 
+    public LandPlotForSaleDto(UUID id, String cadastralNumber, LandType landCategory, LandUseType landPlotState, BigDecimal sizeArea, SewageType sewage, WaterSourceType water, GasType gas, Boolean electricity, String description) {
+        this.id = id;
+        this.cadastralNumber = cadastralNumber;
+        this.landCategory = landCategory;
+        this.landPlotState = landPlotState;
+        this.sizeArea = sizeArea;
+        this.sewage = sewage;
+        this.water = water;
+        this.gas = gas;
+        this.electricity = electricity;
+        this.description = description;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -102,5 +115,42 @@ public class LandPlotForSaleDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LandPlotForSaleDto entity = (LandPlotForSaleDto) o;
+        return Objects.equals(this.id, entity.id) &&
+                Objects.equals(this.cadastralNumber, entity.cadastralNumber) &&
+                Objects.equals(this.landCategory, entity.landCategory) &&
+                Objects.equals(this.landPlotState, entity.landPlotState) &&
+                Objects.equals(this.sizeArea, entity.sizeArea) &&
+                Objects.equals(this.sewage, entity.sewage) &&
+                Objects.equals(this.water, entity.water) &&
+                Objects.equals(this.gas, entity.gas) &&
+                Objects.equals(this.electricity, entity.electricity) &&
+                Objects.equals(this.description, entity.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cadastralNumber, landCategory, landPlotState, sizeArea, sewage, water, gas, electricity, description);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "cadastralNumber = " + cadastralNumber + ", " +
+                "landCategory = " + landCategory + ", " +
+                "landPlotState = " + landPlotState + ", " +
+                "sizeArea = " + sizeArea + ", " +
+                "sewage = " + sewage + ", " +
+                "water = " + water + ", " +
+                "gas = " + gas + ", " +
+                "electricity = " + electricity + ", " +
+                "description = " + description + ")";
     }
 }

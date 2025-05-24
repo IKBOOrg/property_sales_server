@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "flat_for_sale")
-public class FlatForSale{
+public class FlatForSale {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
