@@ -36,7 +36,7 @@ public class Listing {
     /**
      * User who created this listing.
      */
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
@@ -91,7 +91,7 @@ public class Listing {
     /**
      * Private house details if this listing is for a private house.
      */
-    @OneToOne(mappedBy = "listing")
+    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
     private PrivateHouseForSale privateHose;
 
     /**

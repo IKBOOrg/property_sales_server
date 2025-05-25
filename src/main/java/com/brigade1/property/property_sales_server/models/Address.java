@@ -25,7 +25,7 @@ public class Address {
     @Column(name = "settlement", nullable = false, length = 128)
     private String settlement;
 
-    @Size(max = 512, message = "public transport description should be less than 512 characters")
+    @Size(max = 2000, message = "public transport description should be less than 512 characters")
     @Column(name = "public_transport", length = 512)
     private String publicTransport;
 

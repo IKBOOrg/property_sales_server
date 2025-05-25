@@ -7,7 +7,7 @@ import com.brigade1.property.property_sales_server.security.User;
 import com.brigade1.property.property_sales_server.services.ListingService;
 import com.brigade1.property.property_sales_server.services.UserService;
 import com.brigade1.property.property_sales_server.util.errorresponse.ListingErrorResponse;
-import com.brigade1.property.property_sales_server.util.notcreatedexception.ListingNotCreatedException;
+import com.brigade1.property.property_sales_server.util.exceptions.ListingNotCreatedException;
 import com.brigade1.property.property_sales_server.util.validator.ListingValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,6 +126,12 @@ public class ListingController {
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         listingService.deleteById(id);
         return ResponseEntity.ok("Listing deleted successfully");
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody ListingDto update) {
+        listingService.update(id, toListing(update));
+        return ResponseEntity.ok("Listing updated successfully");
     }
 
     // Utility Methods for DTO/entity conversion
