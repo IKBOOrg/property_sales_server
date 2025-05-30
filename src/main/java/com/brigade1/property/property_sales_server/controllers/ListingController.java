@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,7 @@ public class ListingController {
      * Retrieve all listings in the system.
      * @return list of ListingDto
      */
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     public List<ListingDto> getAll() {
         return listingService.findAll()

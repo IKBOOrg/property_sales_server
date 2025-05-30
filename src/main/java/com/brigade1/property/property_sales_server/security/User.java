@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -27,9 +28,10 @@ public class User {
     @Column(name="password", nullable = false)
     private String password;
 
+    @NotNull(message = "Role should not be null")
     @Enumerated(EnumType.STRING)
-    @Column(name="role", nullable = false)
-    Role role;
+    @Column(name = "role", nullable = false)
+    private Role role = Role.ROLE_USER;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Listing> listings;
@@ -37,10 +39,11 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, Role role) {
+    public User(String email, String password, Role role, List<Listing> listings) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.listings = listings;
     }
 
     public UUID getId() {
@@ -67,11 +70,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public @NotNull(message = "Role should not be null") Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(@NotNull(message = "Role should not be null") Role role) {
         this.role = role;
     }
 
