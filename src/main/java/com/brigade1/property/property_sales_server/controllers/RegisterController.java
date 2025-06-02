@@ -5,7 +5,7 @@ import com.brigade1.property.property_sales_server.dto.UserRegisterDto;
 import com.brigade1.property.property_sales_server.security.User;
 import com.brigade1.property.property_sales_server.services.UserService;
 import com.brigade1.property.property_sales_server.util.errorresponse.UserErrorResponse;
-import com.brigade1.property.property_sales_server.util.exceptions.UserNotFoundException;
+import com.brigade1.property.property_sales_server.util.notfoundexception.UserNotFoundException;
 import com.brigade1.property.property_sales_server.util.validator.UserValidator;
 import com.brigade1.property.property_sales_server.util.exceptions.UserNotCreatedException;
 import jakarta.validation.Valid;

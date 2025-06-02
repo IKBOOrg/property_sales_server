@@ -6,6 +6,8 @@ import com.brigade1.property.property_sales_server.models.property_for_sale.Land
 import com.brigade1.property.property_sales_server.models.property_for_sale.PrivateHouseForSale;
 import com.brigade1.property.property_sales_server.models.types.ListingPropertyType;
 import com.brigade1.property.property_sales_server.security.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;

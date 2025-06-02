@@ -21,11 +21,13 @@ public class WebSecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final JwtFilter jwtFilter;
 
     @Autowired
-    public WebSecurityConfig(CustomUserDetailsService userDetailsService, JwtUtil jwtUtil) {
+    public WebSecurityConfig(CustomUserDetailsService userDetailsService, JwtUtil jwtUtil, JwtFilter jwtFilter) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
+        this.jwtFilter = jwtFilter;
     }
 
     @Bean
@@ -35,7 +37,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new JwtFilter(jwtUtil, userDetailsService), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         http
                 .authorizeHttpRequests(auth -> auth

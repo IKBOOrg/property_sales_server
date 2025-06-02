@@ -39,14 +39,14 @@ public class JwtUtil {
     /**
      * Валидация токена и извлечение имени пользователя.
      */
-    public int validateTokenAndRetrieveUserId(String token) throws JWTVerificationException {
+    public UUID validateTokenAndRetrieveUserId(String token) throws JWTVerificationException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET_KEY))
                 .withSubject("User details")
                 .withIssuer("springapp")
                 .build();
 
         DecodedJWT jwt = verifier.verify(token);
-        return jwt.getClaim("user_id").asInt();
+        return UUID.fromString(jwt.getClaim("user_id").asString());
     }
 
 

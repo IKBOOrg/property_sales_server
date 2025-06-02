@@ -55,7 +55,7 @@ public class ListingController {
      * Retrieve all listings in the system.
      * @return list of ListingDto
      */
-    @PreAuthorize("hasRole('ROLE_USER')")
+
     @GetMapping
     public List<ListingDto> getAll() {
         return listingService.findAll()
